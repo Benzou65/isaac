@@ -24,7 +24,6 @@
   },
   "include": [
     "src",
-    "../backend/src/utils"
   ],
   "references": [
     {
