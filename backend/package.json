@@ -1,0 +1,26 @@
+{
+  "name": "isaac-backend",
+  "version": "1.0.0",
+  "description": "Binding of Isaac API backend",
+  "main": "app.js",
+  "author": "Lionel Bonzoumet",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node build/app.js",
+    "dev": "nodemon --watch src src/app.ts"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.4.1",
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "fastify": "^4.24.3"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.2",
+    "@types/node": "^20.8.10",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
