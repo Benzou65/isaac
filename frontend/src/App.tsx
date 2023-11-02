@@ -8,14 +8,9 @@ function App() {
 
   const fetchData = async () => {
     setLoading(true)
-    const res = await fetch('http://localhost:8080/scrape')
+    const res = await fetch('http://localhost:8080/items')
     const data = (await res.json()) as Items[]
     console.log('data', data)
-
-    console.log({
-      iconUrl: data.filter((item) => item.iconUrl !== '').length,
-      iconBase64: data.filter((item) => item.iconBase64 !== '').length,
-    })
 
     setData(data)
     setLoading(false)

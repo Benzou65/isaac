@@ -1,7 +1,7 @@
 import fastify from 'fastify'
 import cors from '@fastify/cors'
 
-import { scrape } from './services/scrapeItems'
+import { getItems } from './services/getItems'
 
 const server = fastify()
 
@@ -9,12 +9,12 @@ server.register(cors, {
   origin: 'http://localhost:5173',
 })
 
-server.get('/scrape', async (request, reply) => {
+server.get('/items', async (request, reply) => {
   try {
-    const result = await scrape()
-    reply.send(result)
+    const items = await getItems()
+    reply.send(items)
   } catch (error) {
-    reply.code(500).send({ error: 'Failed to scrape data from the website' })
+    reply.code(500).send({ error: 'Failed to get items' })
   }
 })
 

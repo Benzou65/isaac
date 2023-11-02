@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as cheerio from 'cheerio'
 import { imgUrlToBase64 } from '../utils/imgUrlToBase64'
 
-export const scrape = async () => {
+export const getItems = async () => {
   const url = 'https://bindingofisaacrebirth.fandom.com/wiki/Items'
   // Make an HTTP GET request to the website page
   const response = await axios.get(url)
@@ -20,10 +20,10 @@ export const scrape = async () => {
       let iconUrl
       let loadingBarUrl
       if ($(element).find('td').eq(2).find('div').length === 2) {
-        iconUrl = $(element).find('td').eq(2).find('div').eq(0).find('img').attr('data-src') || ''
-        loadingBarUrl = $(element).find('td').eq(2).find('div').eq(1).find('img').attr('data-src') || ''
+        iconUrl = $(element).find('td').eq(2).find('div').eq(0).find('img').attr('data-src') ?? ''
+        loadingBarUrl = $(element).find('td').eq(2).find('div').eq(1).find('img').attr('data-src') ?? ''
       } else {
-        iconUrl = $(element).find('td').eq(2).find('img').attr('data-src') || ''
+        iconUrl = $(element).find('td').eq(2).find('img').attr('data-src') ?? ''
         loadingBarUrl = null
       }
 
