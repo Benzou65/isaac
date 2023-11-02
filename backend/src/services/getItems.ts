@@ -20,8 +20,22 @@ export const getItems = async () => {
       let iconUrl
       let loadingBarUrl
       if ($(element).find('td').eq(2).find('div').length === 2) {
-        iconUrl = $(element).find('td').eq(2).find('div').eq(0).find('img').attr('data-src') ?? ''
-        loadingBarUrl = $(element).find('td').eq(2).find('div').eq(1).find('img').attr('data-src') ?? ''
+        iconUrl =
+          $(element)
+            .find('td')
+            .eq(2)
+            .find('div')
+            .eq(0)
+            .find('img')
+            .attr('data-src') ?? ''
+        loadingBarUrl =
+          $(element)
+            .find('td')
+            .eq(2)
+            .find('div')
+            .eq(1)
+            .find('img')
+            .attr('data-src') ?? ''
       } else {
         iconUrl = $(element).find('td').eq(2).find('img').attr('data-src') ?? ''
         loadingBarUrl = null
@@ -36,7 +50,9 @@ export const getItems = async () => {
   const result = await Promise.all(
     items.map(async (item) => {
       const iconBase64 = await imgUrlToBase64(item.iconUrl)
-      const loadingBarBase64 = item.loadingBarUrl ? await imgUrlToBase64(item.loadingBarUrl) : null
+      const loadingBarBase64 = item.loadingBarUrl
+        ? await imgUrlToBase64(item.loadingBarUrl)
+        : null
       return { ...item, iconBase64, loadingBarBase64 }
     })
   )

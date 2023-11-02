@@ -3261,7 +3261,7 @@ is-stream@^3.0.0:
   resolved "https://registry.yarnpkg.com/is-stream/-/is-stream-3.0.0.tgz#e6bfd7aa6bef69f4f472ce9bb681e3e57b4319ac"
   integrity sha512-LnQR4bZ9IADDRSkvpqMGvt/tEJWclzklNgSw48V5EAaAeDd6qGvN8ei6k5p0tvxSR171VmGyHuTiAOfxAbr8kA==
 
-is-unicode-supported@^1.1.0, is-unicode-supported@^1.3.0:
+is-unicode-supported@^1.1.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/is-unicode-supported/-/is-unicode-supported-1.3.0.tgz#d824984b616c292a2e198207d4a609983842f714"
   integrity sha512-43r2mRvz+8JRIKnWJ+3j8JtjRKZ6GmjzfaE/qiBJnikNnYv/6bagRJ1kUhNk8R5EX/GkobD+r+sfxCPJsiKBLQ==
@@ -4356,6 +4356,11 @@ prettier-plugin-astro@^0.9.1:
     prettier "^2.8.3"
     sass-formatter "^0.7.5"
     synckit "^0.8.4"
+
+prettier@3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.0.3.tgz#432a51f7ba422d1469096c0fdc28e235db8f9643"
+  integrity sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==
 
 prettier@^2.8.3, prettier@^2.8.8:
   version "2.8.8"
