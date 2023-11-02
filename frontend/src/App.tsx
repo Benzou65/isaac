@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { css } from '../styled-system/css'
 
 import { Items } from './types/Items'
 
@@ -21,14 +22,31 @@ function App() {
   }, [])
 
   const renderTable = () => {
-    return data.map((item, index) => {
+    return data.map((item) => {
       return (
-        <tr key={index}>
-          <td>{item.id}</td>
-          <td>{item.name}</td>
-          <td>
-            <img src={item.iconBase64} />
-            {item.loadingBarBase64 && <img src={item.loadingBarBase64} />}
+        <tr key={item.id + '-' + item.name}>
+          <td className={css({ textAlign: 'center' })}>{item.id}</td>
+          <td className={css({ textAlign: 'center' })}>{item.name}</td>
+          <td className={css({ textAlign: 'center' })}>
+            <div className={css({ display: 'flex' })}>
+              <img
+                src={item.iconBase64}
+                width={96}
+                height={96}
+                className={css({ imageRendering: 'pixelated' })}
+              />
+              {item.loadingBarBase64 && (
+                <img
+                  src={item.loadingBarBase64}
+                  width={12}
+                  height={54}
+                  className={css({
+                    imageRendering: 'pixelated',
+                    alignSelf: 'center',
+                  })}
+                />
+              )}
+            </div>
           </td>
         </tr>
       )
@@ -36,14 +54,24 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Binding of Issac Items</h1>
+    <div
+      className={css({
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        width: '80%',
+      })}
+    >
+      <h1 className={css({ color: 'fuchsia.700', fontSize: '2xl' })}>
+        Binding of Issac Items
+      </h1>
 
       <table>
         <thead>
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Icon</th>
           </tr>
         </thead>
         <tbody>{!loading && renderTable()}</tbody>
