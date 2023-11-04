@@ -1,8 +1,9 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 import { imgUrlToBase64 } from '../utils/imgUrlToBase64'
+import type { ScrapedItem } from '../types/ScrapedItem'
 
-export const getItems = async () => {
+export const scrapeItems: () => Promise<ScrapedItem[]> = async () => {
   const url = 'https://bindingofisaacrebirth.fandom.com/wiki/Items'
   // Make an HTTP GET request to the website page
   const response = await axios.get(url)
@@ -15,7 +16,7 @@ export const getItems = async () => {
   const items = tableRows
     .map((i, element) => {
       const idString = $(element).find('td').eq(1).attr('data-sort-value')
-      const id = idString ? parseInt(idString, 10) : 0
+      const itemId = idString ? parseInt(idString, 10) : 0
       const name = $(element).find('td').eq(0).text().replace(/\n/g, '')
       let iconUrl
       let loadingBarUrl
@@ -41,11 +42,11 @@ export const getItems = async () => {
         loadingBarUrl = null
       }
 
-      return { id, name, iconUrl, loadingBarUrl }
+      return { itemId, name, iconUrl, loadingBarUrl }
     })
     .get()
-    .filter((item) => item.id > 0) // Remove the first row (header) and items without an ID
-    .sort((a, b) => a.id - b.id)
+    .filter((item) => item.itemId > 0) // Remove the first row (header) and items without an ID
+  // .sort((a, b) => a.itemsId - b.itemsId)
 
   const result = await Promise.all(
     items.map(async (item) => {

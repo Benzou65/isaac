@@ -24,8 +24,8 @@ function App() {
   const renderTable = () => {
     return data.map((item) => {
       return (
-        <tr key={item.id + '-' + item.name}>
-          <td className={css({ textAlign: 'center' })}>{item.id}</td>
+        <tr key={item.id}>
+          <td className={css({ textAlign: 'center' })}>{item.itemId}</td>
           <td className={css({ textAlign: 'center' })}>{item.name}</td>
           <td className={css({ textAlign: 'center' })}>
             <div className={css({ display: 'flex' })}>
