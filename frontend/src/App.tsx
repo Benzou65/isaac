@@ -1,20 +1,26 @@
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 import { css } from '../styled-system/css'
 
 import { Items } from './types/Items'
+import loadingIcon from './assets/loading.svg'
 
 function App() {
   const [data, setData] = useState<Items[]>([])
   const [loading, setLoading] = useState(false)
 
   const fetchData = async () => {
-    setLoading(true)
-    const res = await fetch('http://localhost:8080/items')
-    const data = (await res.json()) as Items[]
-    console.log('data', data)
-
-    setData(data)
-    setLoading(false)
+    try {
+      setLoading(true)
+      const res = await axios.get('http://localhost:8080/items')
+      const data = res.data as Items[]
+      console.log('items', data)
+      setData(data)
+    } catch (error) {
+      console.error('error', error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
@@ -62,9 +68,33 @@ function App() {
         width: '80%',
       })}
     >
-      <h1 className={css({ color: 'fuchsia.700', fontSize: '2xl' })}>
+      <h1
+        className={css({
+          color: 'red.500',
+          fontSize: '2xl',
+          textAlign: 'center',
+        })}
+      >
         Binding of Issac Items
       </h1>
+
+      {loading && (
+        <div
+          className={css({
+            display: 'flex',
+            justifyContent: 'center',
+          })}
+        >
+          <img
+            src={loadingIcon}
+            width={64}
+            height={64}
+            className={css({
+              opacity: 0.5,
+            })}
+          />
+        </div>
+      )}
 
       <table>
         <thead>

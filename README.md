@@ -2,8 +2,11 @@
 
 ## Back-end
 
-Fastify server
+Fastify
+SQLite
+Prisma
 
 ## Front-end
 
-React + Vite app
+React + Vite
+Panda CSS
